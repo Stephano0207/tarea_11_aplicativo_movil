@@ -1,0 +1,15 @@
+.ion-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  ion-card {
+    flex-basis: calc(45% - 10px);
+    margin-bottom: 15px;
+    padding-top: 10px;
+}
+
