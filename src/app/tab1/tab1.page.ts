@@ -194,6 +194,11 @@ export class Tab1Page implements OnInit{
     this.calculateTotal();
   }
 
+  async removeProduct(product:Product){
+    this.serviceCarrito.eliminarProducto(product.id);
+    this.cargarCarrito();
+  }
+
 
 
   calculateTotal() {

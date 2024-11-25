@@ -56,6 +56,7 @@
 
     <ion-list>
       <ion-item *ngFor="let car of productsCar">
+        <ion-icon slot="start" name="trash-bin-outline" (click)="removeProduct(car)" ></ion-icon>
         <ion-label color="primary">{{ car.name }} ({{ car.quantity }}) {{ car.price | currency }}</ion-label>
       </ion-item>
     </ion-list>
