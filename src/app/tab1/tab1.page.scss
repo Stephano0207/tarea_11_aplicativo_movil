@@ -1,15 +1,141 @@
-.ion-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  ion-card {
-    flex-basis: calc(45% - 10px);
-    margin-bottom: 15px;
-    padding-top: 10px;
+/* General */
+ion-header {
+  --background: #ffffff; /* Blanco limpio */
+  --border-color: #e0e0e0; /* Borde inferior suave */
+  --color: #333333; /* Texto oscuro elegante */
 }
 
+ion-toolbar {
+  --background: #f8f8f8; /* Gris claro */
+  --color: #007e3a; /* Verde distintivo */
+  font-weight: 500; /* Refleja un diseño premium */
+}
+
+ion-title {
+  font-size: 20px; /* Tamaño más prominente */
+  font-weight: bold; /* Destaca el título */
+}
+
+/* Ion Select */
+ion-select {
+  --padding-start: 0;
+  --padding-end: 0;
+  --color: #007e3a; /* Verde Saga Falabella */
+  --placeholder-color: #999999; /* Gris para placeholders */
+}
+
+ion-select-option {
+  --color: #333333; /* Texto oscuro */
+}
+
+/* Ion Item */
+ion-item {
+  --background: #ffffff;
+  --border-color: #e0e0e0; /* Líneas suaves */
+  --color: #333333;
+  font-size: 14px;
+}
+
+/* Tarjetas de productos */
+ion-card {
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  --background: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Efecto hover */
+  &:hover {
+    transform: scale(1.02); /* Ligero agrandamiento */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+ion-card-title {
+  font-size: 18px; /* Texto más grande */
+  font-weight: bold;
+  color: #333333;
+}
+
+ion-card-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #007e3a; /* Verde del precio */
+}
+
+ion-card-content {
+  font-size: 14px;
+  color: #666666; /* Texto secundario */
+}
+
+/* Botones */
+ion-button {
+  --background: #007e3a; /* Verde Saga Falabella */
+  --background-hover: #005a29; /* Verde más oscuro al pasar el mouse */
+  --color: #ffffff;
+  border-radius: 8px; /* Bordes suaves */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+ion-button ion-icon {
+  font-size: 18px;
+}
+
+/* Badge */
+ion-badge {
+  --color: #ffffff;
+  --background: #007e3a; /* Fondo verde */
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: 500;
+}
+
+/* Lista del carrito */
+ion-list {
+  margin-top: 20px;
+}
+
+ion-list ion-item {
+  --background: #f8f8f8;
+  --border-color: #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  --color: #333333;
+}
+
+ion-icon[name="trash-bin-outline"] {
+  color: #e53935; /* Rojo para eliminar */
+  font-size: 18px;
+}
+
+ion-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+ion-item:last-of-type {
+  --background: #ffffff;
+  --border-width: 0;
+  font-size: 16px;
+  font-weight: bold;
+  --color: #333333;
+}
+
+/* Imagenes */
+ion-card img {
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+}
+
+/* Grilla */
+ion-grid {
+  --ion-grid-padding: 8px;
+}
+
+ion-col {
+  padding: 8px;
+}
