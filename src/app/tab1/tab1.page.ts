@@ -237,6 +237,7 @@ export class Tab1Page implements OnInit{
       this.serviceVenta.save(this.venta).subscribe(async (res)=>{
         console.log(res);
         this.serviceCarrito.eliminarCarrito();
+        this.cargarCarrito()
       },(err)=>{
         console.error(err);
       });
