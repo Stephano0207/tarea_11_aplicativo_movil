@@ -62,6 +62,10 @@
     </ion-list>
     <ion-item>
       <ion-label>Total del carrito: {{ calculateTotal() | currency }}</ion-label>
+      <ion-button expand="block" color="success"
+      (click)=guardarVenta()>
+        <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+      </ion-button>
    </ion-item>
 
 

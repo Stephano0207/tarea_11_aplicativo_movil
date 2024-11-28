@@ -1,7 +1,9 @@
+import { Venta } from './../models/venta.model';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product.models';
 import { CarritoStorageService } from '../services/carrito-storage.service';
 import { ProductosService } from '../services/productos/productos.service';
+import { VentaService } from '../services/ventas/venta.service';
 
 @Component({
   selector: 'app-tab1',
@@ -22,6 +24,11 @@ export class Tab1Page implements OnInit{
 
 
   public productsCar: Product[]=[];
+  public venta: Venta={
+    fecha_emision: new Date(),
+    total:0,
+    details_venta:[]
+  };
 
   total: number = 0; // Propiedad para almacenar el total
 
@@ -36,7 +43,8 @@ export class Tab1Page implements OnInit{
 
   constructor(
     private serviceCarrito:CarritoStorageService,
-    private serviceProducto:ProductosService
+    private serviceProducto:ProductosService,
+    private serviceVenta:VentaService
   ) {
 
     this.serviceProducto.getAll().subscribe((p)=>{
@@ -180,6 +188,7 @@ export class Tab1Page implements OnInit{
   async cargarCarrito() {
 
     this.productsCar= await this.serviceCarrito.obtenerCarrito();
+
     console.log('Productos cargados en cargarCarrito:', this.productsCar);
   }
 
@@ -199,11 +208,16 @@ export class Tab1Page implements OnInit{
       // El producto ya existe en el carrito, aumenta la cantidad
       existingProduct.quantity++;
        this.serviceCarrito.editarContacto(existingProduct.id,existingProduct);
+
+       //
+
     } else {
       // El producto no está en el carrito, agrégalo con cantidad 1
       this.serviceCarrito.agregarProducto(product);
       product.quantity = 1;
       this.productsCar.push(product);
+      //
+
     }
     this.calculateTotal();
   }
@@ -213,10 +227,34 @@ export class Tab1Page implements OnInit{
     this.cargarCarrito();
   }
 
+  guardarVenta(){
+    if(this.productsCar){
+      this.venta.total=this.total;
+      this.productsCar.forEach((p)=>{
+        this.venta.details_venta.push({id_producto:p.id,cantidad:p.quantity});
+      })
 
+      this.serviceVenta.save(this.venta).subscribe(async (res)=>{
+        console.log(res);
+        this.serviceCarrito.eliminarCarrito();
+      },(err)=>{
+        console.error(err);
+      });
+      console.log(this.venta);
+    }else{
+      console.log("Error");
+    }
+
+
+
+  }
 
   calculateTotal() {
-    return this.total = this.productsCar.reduce((acc, product) => acc + product.price * product.quantity, 0);
+    this.total=this.productsCar.reduce((acc, product) => acc + product.price * product.quantity, 0);
+
+    return this.venta.total = this.productsCar.reduce((acc, product) => acc + product.price * product.quantity, 0);
+
+
   }
 
 }

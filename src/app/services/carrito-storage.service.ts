@@ -41,6 +41,7 @@ export class CarritoStorageService {
     await this._storage?.set(this.name_key, carrito);
   }
 
+
     // Eliminar un contacto
     async eliminarProducto(id: number) {
       const carrito = await this.obtenerCarrito();
@@ -57,4 +58,16 @@ export class CarritoStorageService {
       await this._storage?.set(this.name_key, carrito);
     }
   }
+
+  async eliminarCarrito() {
+    if (!this._storage) {
+      await this.init();
+    }
+    await this._storage?.remove(this.name_key); // Esto elimina el carrito de Ionic Storage
+
+    // Adicionalmente, eliminamos del LocalStorage si fuera necesario:
+    localStorage.removeItem(this.name_key);
+    console.log('Carrito eliminado del LocalStorage');
+  }
+
 }
