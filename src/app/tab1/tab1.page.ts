@@ -4,6 +4,8 @@ import { Product } from '../models/product.models';
 import { CarritoStorageService } from '../services/carrito-storage.service';
 import { ProductosService } from '../services/productos/productos.service';
 import { VentaService } from '../services/ventas/venta.service';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'app-tab1',
